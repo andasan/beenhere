@@ -25,13 +25,9 @@ app.use(express.static(path.join('client', 'build')));
 app.use('/api/places', placesRoutes); //(path filter, route)
 app.use('/api/users', usersRoutes);
 
-mypage.com/auth
-
-
 app.use((req,res,next)=>{
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-})
-
+});
 
 //response error
 app.use((req, res, next) => {
