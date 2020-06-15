@@ -34,7 +34,7 @@ const PlaceItem = (props) => {
     setShowConfirm(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/places/${props._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/places/${props._id}`,
         "DELETE",
         null,
         { Authorization: "Bearer " + token }
@@ -75,7 +75,7 @@ const PlaceItem = (props) => {
           <div className="card-image">
             <div className="image-overlay">
               <img
-                src={`http://localhost:5000/${props.image}`}
+                src={`${process.env.REACT_APP_BACKEND_URL}/${props.image}`}
                 alt={props.title}
               />
             </div>

@@ -61,7 +61,7 @@ exports.signup = async (req, res, next) => {
                 userId: createdUser._id,
                 email: createdUser.email
             },
-            'supersecret_dontshare', //2nd arg: private key, a string that only the server knows |||| DONT SHARE WITH CLIENT
+            process.env.SECRET_KEY, //2nd arg: private key, a string that only the server knows |||| DONT SHARE WITH CLIENT
             { expiresIn: '1h' } //3rd arg: optional to configure the token
         );
     } catch (err) {
@@ -111,7 +111,7 @@ exports.login = async (req, res, next) => {
                 userId: existingUser._id,
                 email: existingUser.email
             },
-            'supersecret_dontshare', //2nd arg: private key, a string that only the server knows |||| DONT SHARE WITH CLIENT
+            process.env.SECRET_KEY, //2nd arg: private key, a string that only the server knows |||| DONT SHARE WITH CLIENT
             { expiresIn: '1h' } //3rd arg: optional to configure the token
         );
     } catch (err) {

@@ -2,7 +2,8 @@ const initState = {
     isLoggedIn: false,
     userProfile: null,
     userId: null,
-    token: null
+    token: null,
+    errorStatusCode: null
 }
 
 const rootReducer = (state=initState, action) => {
@@ -24,6 +25,12 @@ const rootReducer = (state=initState, action) => {
                 userId: null,
                 token: null
             }
+        case 'ERR_STATUS_CODE':
+            return{
+                ...state,
+                errorStatusCode: action.payload
+            }
+
         default:
             return state;
     }

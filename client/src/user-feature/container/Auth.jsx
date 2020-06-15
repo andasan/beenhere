@@ -28,7 +28,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const fetchedUser = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          `${process.env.REACT_APP_BACKEND_URL}/api/users/login`,
           "POST",
           JSON.stringify({
             email: values.email,
@@ -57,7 +57,7 @@ const Auth = () => {
 
       try {
         const fetchedUser = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          `${process.env.REACT_APP_BACKEND_URL}/api/users/signup`,
           "POST",
           formData //formData includes the headers
         );

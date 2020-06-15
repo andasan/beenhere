@@ -20,8 +20,18 @@ app.use(cors());
 //by default, none of the server files are accessible from outside the server
 app.use('/uploads/images', express.static(path.join('uploads', 'images'))); //serving images statically
 
+app.use(express.static(path.join('client', 'build')));
+
 app.use('/api/places', placesRoutes); //(path filter, route)
 app.use('/api/users', usersRoutes);
+
+mypage.com/auth
+
+
+app.use((req,res,next)=>{
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+})
+
 
 //response error
 app.use((req, res, next) => {
@@ -41,7 +51,7 @@ app.use((error, req, res, next) => {
     if (res.headerSent) {
         return next(error);
     }
-    res.status(error.code || 500).json({ message: error.message || 'An unknown error occurred' });
+    res.status(error.code || 500).json({ message: error.message, code: error.code || 'An unknown error occurred' });
 });
 
 mongoose.set('useCreateIndex', true)
@@ -52,4 +62,4 @@ mongoose.connect(process.env.MONGODB_URL,{ useNewUrlParser: true, useUnifiedTopo
     })
     .catch(err => {
         console.log(err);
-    });;
+    });

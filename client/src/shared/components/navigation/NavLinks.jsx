@@ -44,7 +44,7 @@ const NavLinks = (props) => {
                 <img
                   alt="Contact Person"
                   className="circle"
-                  src={`http://localhost:5000/${userProfile.image}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/${userProfile.image}`}
                 />
                 {userProfile.username}
               </Chip>

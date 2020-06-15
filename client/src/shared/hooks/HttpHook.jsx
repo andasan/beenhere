@@ -1,8 +1,12 @@
 import { useState, useCallback, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+
+  const { errorStatusCode } = useSelector(state => state);
+  const dispatch = useDispatch();
 
   //store data across rerender cycles
   const activeHttpRequests = useRef([]);
@@ -29,12 +33,16 @@ export const useHttpClient = () => {
         );
 
         if (!response.ok) {
-          throw new Error(responseData.message);
+          // throw new Error(responseData.message);
+          let err = new Error(responseData.message);
+          err.status = responseData.code;
+          throw err;
         }
 
         setIsLoading(false);
         return responseData;
       } catch (err) {
+        dispatch({ type: "ERR_STATUS_CODE", payload: err.status })
         setError(err.message);
         setIsLoading(false);
         throw err;
@@ -44,6 +52,10 @@ export const useHttpClient = () => {
   );
 
   const clearError = () => {
+
+    if(errorStatusCode === 403 || errorStatusCode === 401){
+      dispatch({ type: 'LOGOUT'});
+    }
     setError(null);
   };
 

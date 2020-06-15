@@ -26,8 +26,8 @@ const NewPlace = () => {
     formData.append("image", values.file);
 
     try {
-      await sendRequest("http://localhost:5000/api/places/", "POST", formData, {
-        Authorization: "Bearer " + token,
+      await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/api/places/`, "POST", formData, {
+        Authorization: "Bearer " + token, 
       });
 
       history.push(`/${userId}/places`);
