@@ -8,15 +8,17 @@ const SideNavs = () => {
 
   return (
     <>
-      <SideNavItem
-        user={{
-          background: "https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-          email: userProfile.email,
-          image: userProfile.image,
-          name: userProfile.username,
-        }}
-        userView
-      />
+      {!isLoggedIn && 
+        <SideNavItem
+          user={{
+            background: "https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+            email: userProfile.email,
+            image: userProfile.image,
+            name: userProfile.username,
+          }}
+          userView
+        />
+      }
       <SideNavItem href="/">Feed</SideNavItem>
       {isLoggedIn && <SideNavItem href={`/${userId}/places`}>My Places</SideNavItem>}
       {isLoggedIn && <SideNavItem href="/places/new">Add a Place</SideNavItem>}
