@@ -8,12 +8,12 @@ const SideNavs = () => {
 
   return (
     <>
-      {!isLoggedIn && 
+      {isLoggedIn && userProfile &&
         <SideNavItem
           user={{
             background: "https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
             email: userProfile.email,
-            image: userProfile.image,
+            image: `${process.env.REACT_APP_BACKEND_URL}/${userProfile.image}`,
             name: userProfile.username,
           }}
           userView
