@@ -1,5 +1,5 @@
 # beenhere
-MERN stack social web app ------- instructional purposes
+MERN stack social web app ------ instructional purposes
 
 # Installation
 
